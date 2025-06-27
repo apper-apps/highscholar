@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import studentService from "@/services/api/studentService";
 import classService from "@/services/api/classService";
 import ApperIcon from "@/components/ApperIcon";
+import Calendar from "@/components/pages/Calendar";
 import SearchBar from "@/components/molecules/SearchBar";
 import EmptyState from "@/components/organisms/EmptyState";
 import { CardSkeleton, SkeletonLoader } from "@/components/organisms/LoadingStates";
@@ -271,7 +272,7 @@ const Classes = () => {
             </div>
           </Card>
           
-          <Card>
+<Card>
             <div className="text-center">
               <div className="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                 <ApperIcon name="Calendar" size={24} className="text-secondary-600" />
@@ -281,7 +282,6 @@ const Classes = () => {
               </p>
               <p className="text-sm text-surface-600">Subjects</p>
             </div>
-</div>
           </Card>
         </div>
       )}
