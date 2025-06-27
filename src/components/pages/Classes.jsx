@@ -399,9 +399,10 @@ const Classes = () => {
                 </div>
               );
             })}
-          </div>
+</div>
         </Card>
       )}
+    </motion.div>
   );
 };
 
