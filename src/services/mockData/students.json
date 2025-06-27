@@ -12,9 +12,8 @@
     "hobbies": "Reading, Swimming, Photography",
     "interests": "Science, Technology, Art",
     "bio": "Passionate about science and technology. Enjoys reading and photography in free time."
-  },
+},
   {
-{
     "Id": 2,
     "firstName": "Liam",
     "lastName": "Williams",
@@ -27,9 +26,8 @@
     "hobbies": "Soccer, Gaming, Music",
     "interests": "Sports, Technology, Music Production",
     "bio": "Active soccer player and music enthusiast. Interested in game development and music production."
-  },
+},
   {
-{
     "Id": 3,
     "firstName": "Sophia",
     "lastName": "Brown",
@@ -42,9 +40,8 @@
     "hobbies": "Dance, Painting, Volunteering",
     "interests": "Arts, Community Service, Psychology",
     "bio": "Creative individual with a passion for arts and community service. Aspiring psychologist."
-  },
+},
   {
-{
     "Id": 4,
     "firstName": "Noah",
     "lastName": "Davis",
@@ -57,9 +54,8 @@
     "hobbies": "Basketball, Coding, Robotics",
     "interests": "Engineering, Computer Science, Sports",
     "bio": "Future engineer with strong interest in robotics and computer programming. Basketball team captain."
-  },
+},
   {
-{
     "Id": 5,
     "firstName": "Olivia",
     "lastName": "Miller",
