@@ -161,11 +161,25 @@ const Students = () => {
     {
       key: 'firstName',
       label: 'Name',
-      sortable: true,
+sortable: true,
       render: (value, student) => (
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
-            <span className="text-primary-700 text-sm font-medium">
+          <div className="w-8 h-8 rounded-full overflow-hidden bg-primary-100 flex items-center justify-center">
+            {student.photoUrl ? (
+              <img 
+                src={student.photoUrl} 
+                alt={`${student.firstName} ${student.lastName}`}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+            ) : null}
+            <span 
+              className="text-primary-700 text-sm font-medium"
+              style={{ display: student.photoUrl ? 'none' : 'flex' }}
+            >
               {student.firstName[0]}{student.lastName[0]}
             </span>
           </div>

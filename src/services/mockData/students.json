@@ -7,9 +7,14 @@
     "grade": "10",
     "enrollmentDate": "2023-08-15",
     "parentContact": "555-0123",
-    "status": "active"
+    "status": "active",
+    "photoUrl": "https://images.unsplash.com/photo-1494790108755-2616b6c89480?w=150&h=150&fit=crop&crop=face",
+    "hobbies": "Reading, Swimming, Photography",
+    "interests": "Science, Technology, Art",
+    "bio": "Passionate about science and technology. Enjoys reading and photography in free time."
   },
   {
+{
     "Id": 2,
     "firstName": "Liam",
     "lastName": "Williams",
@@ -17,9 +22,14 @@
     "grade": "9",
     "enrollmentDate": "2023-08-15",
     "parentContact": "555-0124",
-    "status": "active"
+    "status": "active",
+    "photoUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    "hobbies": "Soccer, Gaming, Music",
+    "interests": "Sports, Technology, Music Production",
+    "bio": "Active soccer player and music enthusiast. Interested in game development and music production."
   },
   {
+{
     "Id": 3,
     "firstName": "Sophia",
     "lastName": "Brown",
@@ -27,9 +37,14 @@
     "grade": "11",
     "enrollmentDate": "2023-08-15",
     "parentContact": "555-0125",
-    "status": "active"
+    "status": "active",
+    "photoUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    "hobbies": "Dance, Painting, Volunteering",
+    "interests": "Arts, Community Service, Psychology",
+    "bio": "Creative individual with a passion for arts and community service. Aspiring psychologist."
   },
   {
+{
     "Id": 4,
     "firstName": "Noah",
     "lastName": "Davis",
@@ -37,9 +52,14 @@
     "grade": "10",
     "enrollmentDate": "2023-08-15",
     "parentContact": "555-0126",
-    "status": "active"
+    "status": "active",
+    "photoUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+    "hobbies": "Basketball, Coding, Robotics",
+    "interests": "Engineering, Computer Science, Sports",
+    "bio": "Future engineer with strong interest in robotics and computer programming. Basketball team captain."
   },
   {
+{
     "Id": 5,
     "firstName": "Olivia",
     "lastName": "Miller",
@@ -47,6 +67,10 @@
     "grade": "9",
     "enrollmentDate": "2023-08-15",
     "parentContact": "555-0127",
-    "status": "active"
+    "status": "active",
+    "photoUrl": "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=150&h=150&fit=crop&crop=face",
+    "hobbies": "Writing, Theater, Debate",
+    "interests": "Literature, Drama, Public Speaking",
+    "bio": "Aspiring writer and theater enthusiast. Active member of the debate team and drama club."
   }
 ]

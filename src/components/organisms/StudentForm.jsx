@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
+import { useDropzone } from 'react-dropzone';
 import Button from '@/components/atoms/Button';
 import Card from '@/components/atoms/Card';
 import FormField from '@/components/molecules/FormField';
 import ApperIcon from '@/components/ApperIcon';
-
 const StudentForm = ({ student, onSubmit, onCancel, loading = false }) => {
   const [formData, setFormData] = useState({
     firstName: student?.firstName || '',
@@ -14,9 +14,15 @@ const StudentForm = ({ student, onSubmit, onCancel, loading = false }) => {
     grade: student?.grade || '',
     enrollmentDate: student?.enrollmentDate || new Date().toISOString().split('T')[0],
     parentContact: student?.parentContact || '',
-    status: student?.status || 'active'
+    status: student?.status || 'active',
+    photoUrl: student?.photoUrl || '',
+    hobbies: student?.hobbies || '',
+    interests: student?.interests || '',
+    bio: student?.bio || ''
   });
 
+  const [photoPreview, setPhotoPreview] = useState(student?.photoUrl || '');
+  const [uploadedFile, setUploadedFile] = useState(null);
   const [errors, setErrors] = useState({});
 
   const gradeOptions = [
@@ -61,6 +67,32 @@ const StudentForm = ({ student, onSubmit, onCancel, loading = false }) => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    if (file) {
+      setUploadedFile(file);
+      
+      // Create preview URL
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPhotoPreview(e.target.result);
+        setFormData(prev => ({
+          ...prev,
+          photoUrl: e.target.result
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      'image/*': ['.jpeg', '.jpg', '.png', '.gif']
+    },
+    maxFiles: 1,
+    maxSize: 5 * 1024 * 1024 // 5MB
+  });
 
   const handleChange = (field) => (e) => {
     setFormData(prev => ({
@@ -77,6 +109,14 @@ const StudentForm = ({ student, onSubmit, onCancel, loading = false }) => {
     }
   };
 
+  const removePhoto = () => {
+    setPhotoPreview('');
+    setUploadedFile(null);
+    setFormData(prev => ({
+      ...prev,
+      photoUrl: ''
+    }));
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -177,6 +217,92 @@ const StudentForm = ({ student, onSubmit, onCancel, loading = false }) => {
             error={errors.parentContact}
             required
             icon="Phone"
+          />
+</div>
+
+        {/* Photo Upload Section */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2">
+            <ApperIcon name="Camera" size={16} className="text-surface-600" />
+            <h3 className="text-sm font-medium text-surface-900">Profile Photo</h3>
+          </div>
+          
+          <div className="flex items-start gap-4">
+            {/* Photo Preview */}
+            {photoPreview && (
+              <div className="relative">
+                <img
+                  src={photoPreview}
+                  alt="Profile preview"
+                  className="w-20 h-20 rounded-lg object-cover border border-surface-200"
+                />
+                <button
+                  type="button"
+                  onClick={removePhoto}
+                  className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white hover:bg-red-600 transition-colors"
+                >
+                  <ApperIcon name="X" size={12} />
+                </button>
+              </div>
+            )}
+            
+            {/* Upload Area */}
+            <div
+              {...getRootProps()}
+              className={`flex-1 border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors ${
+                isDragActive 
+                  ? 'border-primary-400 bg-primary-50' 
+                  : 'border-surface-300 hover:border-primary-300 hover:bg-primary-50'
+              }`}
+            >
+              <input {...getInputProps()} />
+              <ApperIcon name="Upload" size={24} className="mx-auto mb-2 text-surface-400" />
+              <p className="text-sm text-surface-600">
+                {isDragActive 
+                  ? 'Drop the photo here...' 
+                  : 'Drag & drop a photo here, or click to select'
+                }
+              </p>
+              <p className="text-xs text-surface-500 mt-1">
+                Supports JPG, PNG, GIF up to 5MB
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Customization Section */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2">
+            <ApperIcon name="Sparkles" size={16} className="text-surface-600" />
+            <h3 className="text-sm font-medium text-surface-900">Additional Information</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField
+              label="Hobbies"
+              value={formData.hobbies}
+              onChange={handleChange('hobbies')}
+              placeholder="e.g., Reading, Swimming, Photography"
+              icon="Heart"
+            />
+
+            <FormField
+              label="Interests"
+              value={formData.interests}
+              onChange={handleChange('interests')}
+              placeholder="e.g., Science, Technology, Art"
+              icon="Star"
+            />
+          </div>
+
+          <FormField
+            label="Bio"
+            type="textarea"
+            rows={3}
+            value={formData.bio}
+            onChange={handleChange('bio')}
+            placeholder="Tell us about yourself..."
+            icon="FileText"
           />
         </div>
 
