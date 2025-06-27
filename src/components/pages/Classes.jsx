@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import Card from '@/components/atoms/Card';
-import Button from '@/components/atoms/Button';
-import Badge from '@/components/atoms/Badge';
-import SearchBar from '@/components/molecules/SearchBar';
-import { SkeletonLoader, CardSkeleton } from '@/components/organisms/LoadingStates';
-import ErrorState from '@/components/organisms/ErrorState';
-import EmptyState from '@/components/organisms/EmptyState';
-import ApperIcon from '@/components/ApperIcon';
-import classService from '@/services/api/classService';
-import studentService from '@/services/api/studentService';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import studentService from "@/services/api/studentService";
+import classService from "@/services/api/classService";
+import ApperIcon from "@/components/ApperIcon";
+import SearchBar from "@/components/molecules/SearchBar";
+import EmptyState from "@/components/organisms/EmptyState";
+import { CardSkeleton, SkeletonLoader } from "@/components/organisms/LoadingStates";
+import ErrorState from "@/components/organisms/ErrorState";
+import Card from "@/components/atoms/Card";
+import Badge from "@/components/atoms/Badge";
+import Button from "@/components/atoms/Button";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
@@ -281,10 +281,127 @@ const Classes = () => {
               </p>
               <p className="text-sm text-surface-600">Subjects</p>
             </div>
+</div>
           </Card>
         </div>
       )}
-    </motion.div>
+
+      {/* Calendar Widget */}
+      {classes.length > 0 && (
+        <Card>
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h3 className="text-lg font-semibold text-surface-900">
+                Upcoming Assignments & Events
+              </h3>
+              <p className="text-sm text-surface-600">
+                Quick overview of class schedules and due dates
+              </p>
+            </div>
+            <Button variant="outline" size="sm">
+              <ApperIcon name="Calendar" size={14} />
+              View Full Calendar
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {classes.map(classItem => {
+              const assignments = classItem.assignments || [];
+              const events = classItem.events || [];
+              const upcomingItems = [...assignments, ...events]
+                .sort((a, b) => {
+                  const dateA = new Date(a.dueDate || a.startDate);
+                  const dateB = new Date(b.dueDate || b.startDate);
+                  return dateA - dateB;
+                })
+                .slice(0, 3);
+
+              return (
+                <div
+                  key={classItem.Id}
+                  className="border border-surface-200 rounded-lg p-4 hover:border-primary-300 transition-colors"
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className={`w-3 h-3 rounded-full bg-${getSubjectColor(classItem.subject)}-500`}></div>
+                    <h4 className="font-medium text-sm text-surface-900 truncate">
+                      {classItem.name}
+                    </h4>
+                  </div>
+
+                  <div className="space-y-2">
+                    {upcomingItems.length === 0 ? (
+                      <p className="text-xs text-surface-500 text-center py-2">
+                        No upcoming items
+                      </p>
+                    ) : (
+                      upcomingItems.map((item, index) => {
+                        const isAssignment = 'dueDate' in item;
+                        const date = new Date(item.dueDate || item.startDate);
+                        const isOverdue = isAssignment && date < new Date();
+                        
+                        return (
+                          <div
+                            key={`${isAssignment ? 'assignment' : 'event'}-${item.Id}`}
+                            className={`text-xs p-2 rounded border-l-2 cursor-pointer hover:bg-surface-50 ${
+                              isOverdue
+                                ? 'border-l-accent-500 bg-accent-50'
+                                : isAssignment
+                                ? 'border-l-warning-500 bg-warning-50'
+                                : 'border-l-primary-500 bg-primary-50'
+                            }`}
+                            onClick={() => {
+                              // Handle drill-down to assignment/event details
+                              toast.info(`Viewing details for: ${item.title}`);
+                            }}
+                          >
+                            <div className="flex items-center gap-1 mb-1">
+                              <ApperIcon 
+                                name={isAssignment ? "FileText" : "Calendar"} 
+                                size={10} 
+                                className={
+                                  isOverdue
+                                    ? 'text-accent-600'
+                                    : isAssignment
+                                    ? 'text-warning-600'
+                                    : 'text-primary-600'
+                                }
+                              />
+                              <span className={`font-medium ${
+                                isOverdue
+                                  ? 'text-accent-700'
+                                  : isAssignment
+                                  ? 'text-warning-700'
+                                  : 'text-primary-700'
+                              }`}>
+                                {item.title}
+                              </span>
+                            </div>
+                            <p className="text-surface-600 text-xs mb-1 truncate">
+                              {item.description}
+                            </p>
+                            <div className="flex items-center justify-between">
+                              <span className={`text-xs ${
+                                isOverdue ? 'text-accent-600 font-medium' : 'text-surface-500'
+                              }`}>
+                                {isAssignment ? 'Due' : 'Event'}: {date.toLocaleDateString()}
+                              </span>
+                              {isOverdue && (
+                                <Badge variant="danger" size="xs">
+                                  Overdue
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+      )}
   );
 };
 

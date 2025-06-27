@@ -4,6 +4,7 @@ import Classes from '@/components/pages/Classes';
 import Grades from '@/components/pages/Grades';
 import Attendance from '@/components/pages/Attendance';
 import Reports from '@/components/pages/Reports';
+import Calendar from '@/components/pages/Calendar';
 
 export const routes = {
   dashboard: {
@@ -45,8 +46,15 @@ export const routes = {
     id: 'reports',
     label: 'Reports',
     path: '/reports',
-    icon: 'FileText',
+icon: 'FileText',
     component: Reports
+  },
+  calendar: {
+    id: 'calendar',
+    label: 'Calendar',
+    path: '/calendar',
+    icon: 'CalendarDays',
+    component: Calendar
   }
 };
 
