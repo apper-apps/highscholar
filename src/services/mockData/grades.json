@@ -1,0 +1,72 @@
+[
+  {
+    "Id": 1,
+    "studentId": 1,
+    "classId": 1,
+    "assignmentId": "assign_1",
+    "assignmentName": "Algebra Quiz",
+    "score": 85,
+    "maxScore": 100,
+    "date": "2024-01-15"
+  },
+  {
+    "Id": 2,
+    "studentId": 1,
+    "classId": 2,
+    "assignmentId": "assign_2",
+    "assignmentName": "Essay on Shakespeare",
+    "score": 92,
+    "maxScore": 100,
+    "date": "2024-01-10"
+  },
+  {
+    "Id": 3,
+    "studentId": 2,
+    "classId": 2,
+    "assignmentId": "assign_2",
+    "assignmentName": "Essay on Shakespeare",
+    "score": 78,
+    "maxScore": 100,
+    "date": "2024-01-10"
+  },
+  {
+    "Id": 4,
+    "studentId": 3,
+    "classId": 1,
+    "assignmentId": "assign_1",
+    "assignmentName": "Algebra Quiz",
+    "score": 94,
+    "maxScore": 100,
+    "date": "2024-01-15"
+  },
+  {
+    "Id": 5,
+    "studentId": 3,
+    "classId": 3,
+    "assignmentId": "assign_3",
+    "assignmentName": "Cell Structure Lab",
+    "score": 88,
+    "maxScore": 100,
+    "date": "2024-01-12"
+  },
+  {
+    "Id": 6,
+    "studentId": 4,
+    "classId": 1,
+    "assignmentId": "assign_1",
+    "assignmentName": "Algebra Quiz",
+    "score": 76,
+    "maxScore": 100,
+    "date": "2024-01-15"
+  },
+  {
+    "Id": 7,
+    "studentId": 5,
+    "classId": 2,
+    "assignmentId": "assign_2",
+    "assignmentName": "Essay on Shakespeare",
+    "score": 89,
+    "maxScore": 100,
+    "date": "2024-01-10"
+  }
+]

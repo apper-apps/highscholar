@@ -1,0 +1,52 @@
+[
+  {
+    "Id": 1,
+    "firstName": "Emma",
+    "lastName": "Johnson",
+    "email": "emma.johnson@email.com",
+    "grade": "10",
+    "enrollmentDate": "2023-08-15",
+    "parentContact": "555-0123",
+    "status": "active"
+  },
+  {
+    "Id": 2,
+    "firstName": "Liam",
+    "lastName": "Williams",
+    "email": "liam.williams@email.com", 
+    "grade": "9",
+    "enrollmentDate": "2023-08-15",
+    "parentContact": "555-0124",
+    "status": "active"
+  },
+  {
+    "Id": 3,
+    "firstName": "Sophia",
+    "lastName": "Brown",
+    "email": "sophia.brown@email.com",
+    "grade": "11",
+    "enrollmentDate": "2023-08-15",
+    "parentContact": "555-0125",
+    "status": "active"
+  },
+  {
+    "Id": 4,
+    "firstName": "Noah",
+    "lastName": "Davis",
+    "email": "noah.davis@email.com",
+    "grade": "10",
+    "enrollmentDate": "2023-08-15",
+    "parentContact": "555-0126",
+    "status": "active"
+  },
+  {
+    "Id": 5,
+    "firstName": "Olivia",
+    "lastName": "Miller",
+    "email": "olivia.miller@email.com",
+    "grade": "9",
+    "enrollmentDate": "2023-08-15",
+    "parentContact": "555-0127",
+    "status": "active"
+  }
+]
